@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zxn.groupedadapterdemo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.StickyActivity"
+            android:label="@string/sticky_list" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.GroupedListActivity"
+            android:label="@string/group_list" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.NoHeaderActivity"
+            android:label="@string/no_header" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.NoFooterActivity"
+            android:label="@string/no_footer" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.Grid1Activity"
+            android:label="@string/grid_children_1" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.Grid2Activity"
+            android:label="@string/grid_children_2" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.ExpandableActivity"
+            android:label="@string/expandable" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.VariousActivity"
+            android:label="@string/various" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.VariousChildActivity"
+            android:label="@string/various_child" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.BindingActivity"
+            android:label="@string/binding_adapter" />
+        <activity
+            android:name="com.zxn.groupedadapterdemo.activity.EmptyActivity"
+            android:label="@string/empty_list" />
+    </application>
+
+</manifest>
