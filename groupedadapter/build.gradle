@@ -1,4 +1,13 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.dokka'
+    id 'kotlin-android-extensions'
+    id 'com.github.dcendents.android-maven'
+    id 'com.jfrog.bintray'
+}
+
+version = "1.0.0"
 
 android {
     compileSdkVersion 30
@@ -26,6 +35,97 @@ dependencies {
     compileOnly 'androidx.recyclerview:recyclerview:1.1.0'
 }
 
+def siteUrl = 'https://github.com/zhang721688/GroupedRVAdapter'
+def gitUrl = 'https://github.com/zhang721688/GroupedRVAdapter.git'
+def libName = "groupedadapter"
+group = "com.zxn.groupedadapter"
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'desc content'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'zxn'
+                        name 'ZhangXiaoNing'
+                        email 'zxn13716071676@sina.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task generateSourcesJar(type: Jar) {
+    group = 'jar'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    //outputFormat = 'javadoc'
+    outputFormat = 'html'
+    outputDirectory = javadoc.destinationDir
+}
+
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives generateJavadoc
+    archives generateSourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "GroupedRVAdapter"
+        name = libName
+        desc = 'desc content'
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+repositories {
+    mavenCentral()
+}
 
 
 //group='com.github.donkingliang' // 指定group，com.github.<用户名>
