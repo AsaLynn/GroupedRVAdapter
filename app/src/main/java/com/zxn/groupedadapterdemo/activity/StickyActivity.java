@@ -35,7 +35,9 @@ public class StickyActivity extends AppCompatActivity {
         stickyLayout = (StickyHeaderLayout) findViewById(R.id.sticky_layout);
 
         rvList.setLayoutManager(new LinearLayoutManager(this));
-        NoFooterAdapter adapter = new NoFooterAdapter(this, GroupModel.getGroups(10, 5));
+        //NoFooterAdapter adapter = new NoFooterAdapter(this, GroupModel.getGroups(10, 5));
+        NoFooterAdapter adapter = new NoFooterAdapter(this, GroupModel.getGroups(0, 5));
+        adapter.showEmptyView(true);
         adapter.setOnHeaderClickListener(new GroupedRecyclerViewAdapter.OnHeaderClickListener() {
             @Override
             public void onHeaderClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder,

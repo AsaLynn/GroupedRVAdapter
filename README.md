@@ -20,27 +20,12 @@ GroupedRecyclerViewAdapter可以很方便的实现RecyclerView的分组显示，
 
 ### 引入依赖 
 
-在Project的build.gradle在添加以下代码
 
-```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-```
 在Module的build.gradle在添加以下代码
 
 ```
-
 // 使用了Androidx
-
-implementation 'com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.0'
-
-// 使用Android support包
-
-implementation 'com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.0-support'
+implementation 'com.zxn.groupedadapter:groupedadapter:1.0.0'
 ```
 
 ### 基本使用
